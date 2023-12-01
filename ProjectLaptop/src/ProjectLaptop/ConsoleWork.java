@@ -2,7 +2,7 @@ package ProjectLaptop;
 import java.util.*;
 public class ConsoleWork {
     Map<Integer, Laptop> listOfAvailableLaptops = new TreeMap<>();
-     Map<Integer,Laptop> sortListLaptop = new TreeMap<>();
+
     int key = 1;
 
     Laptop laptop1 = new Laptop("huawei", "matebook","black",
@@ -76,42 +76,42 @@ public class ConsoleWork {
                    work = false;
                    break;
                case "2":
-                   printListOfAvailableLaptops(sortListLaptop);
+                   printListOfAvailableLaptops(listOfAvailableLaptops);
                    break;
                case "3":
-                   System.out.println("Поиск по параметру бренд");
+                   System.out.println("\tПоиск по параметру бренд\n");
                    filterByBrand();
                    break;
                case "4":
-                   System.out.println("Поиск по параметру имя");
+                   System.out.println("\tПоиск по параметру имя\n");
                    filterByName();
                    break;
                case "5":
-                   System.out.println("Поиск по параметру цвет");
+                   System.out.println("\tПоиск по параметру цвет\n");
                    filterByColor();
                    break;
                case "6":
-                   System.out.println("Поиск по параметру операционная система");
+                   System.out.println("\tПоиск по параметру операционная система\n");
                    filterByOperationSystem();
                    break;
                case "7":
-                   System.out.println("Поиск по параметру диагональ монитора");
+                   System.out.println("\tПоиск по параметру диагональ монитора\n");
                    filterByMonitorDiagonal();
                    break;
                case "8":
-                   System.out.println("Поиск по параметру количество ядер");
+                   System.out.println("\tПоиск по параметру количество ядер\n");
                    filterByCores();
                    break;
                case "9":
-                   System.out.println("Поиск по параметру оперативная память");
+                   System.out.println("\tПоиск по параметру оперативная память\n");
                    filterByRamMemory();
                    break;
                case "10":
-                   System.out.println("Поиск по параметру встроенная память");
+                   System.out.println("\tПоиск по параметру встроенная память\n");
                    filterBySsdMemory();
                    break;
                case "11":
-                   System.out.println("Поиск по параметру объем видеопамяти");
+                   System.out.println("\tПоиск по параметру объем видеопамяти\n");
                    filterByVideoRam();
                    break;
                default:
@@ -132,7 +132,7 @@ public class ConsoleWork {
     }
     public void printListOfAvailableLaptops(Map<Integer, Laptop> map){
         if (listOfAvailableLaptops.isEmpty()){
-            System.out.println("Нет ноутбуков в наличии");
+            System.out.println("\tНет ноутбуков с такими параметрами\n");
         }
         for (Map.Entry<Integer, Laptop> mapListOfAvailableLaptops : listOfAvailableLaptops.entrySet()){
             System.out.println(mapListOfAvailableLaptops.getKey()+" - "+mapListOfAvailableLaptops.getValue());
@@ -142,106 +142,151 @@ public class ConsoleWork {
     }
 
     public void filterByBrand() {
-        String parameter = new Scanner(System.in).nextLine();
-        Iterator<Map.Entry<Integer, Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
+        String parameter = new Scanner(System.in).nextLine().toLowerCase();
+        if(parameter.matches("[A-z]+")) {
+            Iterator<Map.Entry<Integer, Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
 
-        while (iterator.hasNext()) {
-            Map.Entry<Integer, Laptop> entry = iterator.next();
-            if (!entry.getValue().getBrand().contains(parameter)) {
-                iterator.remove(); // Безопасное удаление элемента через итератор
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, Laptop> entry = iterator.next();
+                if (!entry.getValue().getBrand().contains(parameter)) {
+                    iterator.remove();
+                }
             }
+        }
+        else {
+            System.out.println("\tВводите на латыни\n");
         }
     }
 
     public void filterByName(){
-        String parameter = new Scanner(System.in).nextLine();
-        Iterator<Map.Entry<Integer,Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
+        String parameter = new Scanner(System.in).nextLine().toLowerCase();
+        if(parameter.matches("[A-z]+")) {
+            Iterator<Map.Entry<Integer, Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
 
-        while (iterator.hasNext()){
-            Map.Entry<Integer,Laptop> entry = iterator.next();
-            if(!entry.getValue().getName().contains(parameter)){
-                iterator.remove();
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, Laptop> entry = iterator.next();
+                if (!entry.getValue().getName().contains(parameter)) {
+                    iterator.remove();
+                }
             }
+        }
+        else {
+            System.out.println("\tВводите на латыни\n");
         }
     }
     public void filterByColor(){
-        String parameter = new Scanner(System.in).nextLine();
-        Iterator<Map.Entry<Integer,Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
+        String parameter = new Scanner(System.in).nextLine().toLowerCase();
+        if(parameter.matches("[A-z]+")) {
+            Iterator<Map.Entry<Integer, Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
 
-        while (iterator.hasNext()){
-            Map.Entry<Integer,Laptop> entry = iterator.next();
-            if(!entry.getValue().getColor().contains(parameter)){
-                iterator.remove();
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, Laptop> entry = iterator.next();
+                if (!entry.getValue().getColor().contains(parameter)) {
+                    iterator.remove();
+                }
             }
+        }
+        else {
+            System.out.println("\tВводите на латыни\n");
         }
     }
     public  void filterByOperationSystem(){
-        String parameter = new Scanner(System.in).nextLine();
-        Iterator<Map.Entry<Integer,Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
+        String parameter = new Scanner(System.in).nextLine().toLowerCase();
+        if(parameter.matches("[A-z]+")) {
+            Iterator<Map.Entry<Integer, Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
 
-        while (iterator.hasNext()){
-            Map.Entry<Integer,Laptop> entry = iterator.next();
-            if(!entry.getValue().getOperationSystem().contains(parameter)){
-                iterator.remove();
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, Laptop> entry = iterator.next();
+                if (!entry.getValue().getOperationSystem().contains(parameter)) {
+                    iterator.remove();
+                }
             }
+        }
+        else {
+            System.out.println("\tВводите на латыни\n");
         }
     }
     public void filterByMonitorDiagonal(){
-        String parameter = new Scanner(System.in).nextLine();
-        Iterator<Map.Entry<Integer,Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
+        String parameter = new Scanner(System.in).nextLine().toLowerCase();
 
-        while (iterator.hasNext()){
-            Map.Entry<Integer,Laptop> entry = iterator.next();
-            if(!entry.getValue().getMonitorDiagonal().contains(parameter)){
-                iterator.remove();
+        Iterator<Map.Entry<Integer,Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
+        if(parameter.matches("[A-z]+")) {
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, Laptop> entry = iterator.next();
+                if (!entry.getValue().getMonitorDiagonal().contains(parameter)) {
+                    iterator.remove();
+                }
             }
+        }
+        else {
+            System.out.println("\tВводите на латыни\n");
         }
     }
 
     public void filterByCores(){
-        String parameter = new Scanner(System.in).nextLine();
-        Iterator<Map.Entry<Integer,Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
+        String parameter = new Scanner(System.in).nextLine().toLowerCase();
 
-        while (iterator.hasNext()){
-            Map.Entry<Integer,Laptop> entry = iterator.next();
-            if(!entry.getValue().getCores().contains(parameter)){
-                iterator.remove();
+        Iterator<Map.Entry<Integer,Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
+        if(parameter.matches("[A-z]+")) {
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, Laptop> entry = iterator.next();
+                if (!entry.getValue().getCores().contains(parameter)) {
+                    iterator.remove();
+                }
             }
+        }
+        else {
+            System.out.println("\tВводите на латыни\n");
         }
     }
     public void filterByRamMemory(){
-        String parameter = new Scanner(System.in).nextLine();
-        Iterator<Map.Entry<Integer,Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
+        String parameter = new Scanner(System.in).nextLine().toLowerCase();
+        if(parameter.matches("[A-z]+")) {
+            Iterator<Map.Entry<Integer, Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
 
-        while (iterator.hasNext()){
-            Map.Entry<Integer,Laptop> entry = iterator.next();
-            if(!entry.getValue().getRamMemory().contains(parameter)){
-                iterator.remove();
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, Laptop> entry = iterator.next();
+                if (!entry.getValue().getRamMemory().contains(parameter)) {
+                    iterator.remove();
+                }
             }
+        }
+        else {
+            System.out.println("\tВводите на латыни\n");
         }
     }
 
     public void filterBySsdMemory(){
-        String parameter = new Scanner(System.in).nextLine();
-        Iterator<Map.Entry<Integer,Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
+        String parameter = new Scanner(System.in).nextLine().toLowerCase();
+        if(parameter.matches("[A-z]+")) {
+            Iterator<Map.Entry<Integer, Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
 
-        while (iterator.hasNext()){
-            Map.Entry<Integer,Laptop> entry = iterator.next();
-            if(!entry.getValue().getSsdMemory().contains(parameter)){
-                iterator.remove();
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, Laptop> entry = iterator.next();
+                if (!entry.getValue().getSsdMemory().contains(parameter)) {
+                    iterator.remove();
+                }
             }
+        }
+        else {
+            System.out.println("\tВводите на латыни\n");
         }
     }
 
     public void filterByVideoRam(){
-        String parameter = new Scanner(System.in).nextLine();
-        Iterator<Map.Entry<Integer,Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
+        String parameter = new Scanner(System.in).nextLine().toLowerCase();
+        if(parameter.matches("[A-z]+")) {
+            Iterator<Map.Entry<Integer, Laptop>> iterator = listOfAvailableLaptops.entrySet().iterator();
 
-        while (iterator.hasNext()){
-            Map.Entry<Integer,Laptop> entry = iterator.next();
-            if(!entry.getValue().getVideoRam().contains(parameter)){
-                iterator.remove();
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, Laptop> entry = iterator.next();
+                if (!entry.getValue().getVideoRam().contains(parameter)) {
+                    iterator.remove();
+                }
             }
+        }
+        else {
+            System.out.println("\tВводите на латыни\n");
         }
     }
 }
